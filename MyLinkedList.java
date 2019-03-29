@@ -1,4 +1,4 @@
-public class MyLinkedList{
+public class MyLinkedList<E>{
    private int size;
    private Node start,end;
 
@@ -11,7 +11,7 @@ public int size(){
   return size;
 }
 
-public boolean add(int value){
+public boolean add(E value){
   if(start == null){
     start = new Node(value);
     end = start;
@@ -51,17 +51,17 @@ private Node getnthnode(int n){
   return now;
 }
 
-public Integer get(int index){
+public E get(int index){
   Node n = getnthnode(index);
   return n.getData();
 }
 
-public Integer set(int index, Integer value){
+public E set(int index, E value){
   Node n = getnthnode(index);
   return n.setData(value);
 }
 
-public boolean contains(Integer value){
+public boolean contains(E value){
   Node n = start;
   int counter = 0;
   while(counter < size){
@@ -72,7 +72,7 @@ public boolean contains(Integer value){
   return false;
 }
 
-public int indexOf(Integer value){
+public int indexOf(E value){
   Node n = start;
   int counter = 0;
   while(counter < size){
@@ -83,7 +83,7 @@ public int indexOf(Integer value){
   return -1;
 }
 
-  public void add(int index, Integer value){
+  public void add(int index, E value){
     if (index > size || index < 0) throw new IndexOutOfBoundsException();
     Node n = new Node();
     n.setData(value);
@@ -108,24 +108,24 @@ public int indexOf(Integer value){
     size++;
   }
 
-  public Integer remove(int index){
+  public E remove(int index){
     if(index < 0 || index >= size) throw new IndexOutOfBoundsException();
     if(index == 0){
-      int x = start.getData();
+      E x = start.getData();
       start = start.next();
       start.setPrev(null);
       size -= 1;
       return x;
     }
     if(index == size - 1){
-      int x = end.getData();
+      E x = end.getData();
       end = end.prev();
       end.setNext(null);
       size -= 1;
       return x;
     }
     Node n = getnthnode(index);
-    int x = n.getData();
+    E x = n.getData();
     Node prev = n.prev();
     Node next = n.next();
     prev.setNext(next);
@@ -134,7 +134,7 @@ public int indexOf(Integer value){
     return x;
   }
 
-  public boolean remove(Integer value){
+  public boolean remove(E value){
     if(!this.contains(value)) return false;
     int i = this.indexOf(value);
     this.remove(i);
@@ -146,10 +146,10 @@ public int indexOf(Integer value){
 //
 //
   private class Node{
-    private Integer data;
+    private E data;
     private Node next,prev;
 
-    public Node(Integer data){
+    public Node(E data){
       this.data = data;
     }
     public Node(){
@@ -171,11 +171,11 @@ public int indexOf(Integer value){
     public void setPrev(Node other){
       prev = other;
     }
-    public Integer getData(){
+    public E getData(){
       return data;
     }
-    public Integer setData(Integer i){
-      Integer x = data;
+    public E setData(E i){
+      E x = data;
       data = i;
       return x;
     }
