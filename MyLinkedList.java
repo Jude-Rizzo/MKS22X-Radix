@@ -1,6 +1,6 @@
 public class MyLinkedList<E>{
    private int size;
-   private Node start,end;
+   public Node start,end;
 
 
 public MyLinkedList(){
@@ -9,6 +9,14 @@ public MyLinkedList(){
 
 public int size(){
   return size;
+}
+
+public Node getStart(){
+  return start;
+}
+
+public Node getEnd(){
+  return end;
 }
 
 public boolean add(E value){
@@ -106,6 +114,14 @@ public int indexOf(E value){
       n.setPrev(prevNode);
     }
     size++;
+  }
+
+  @SuppresWarnings("unchecked")
+  public void extend(MyLinkedList l){
+    end.setNext(l.start);
+    l.start.setPrev(end);
+    end = l.end;
+
   }
 
   public E remove(int index){
