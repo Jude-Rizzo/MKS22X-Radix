@@ -74,7 +74,7 @@ public Node<E> removeFront(){
 
 
 
-  public Node<E> removeEnd(){
+  public Node<E> removeBack(){
     if(size == 0) return null;
     (end.start).setNext(null);
     Node<E> val = end;
