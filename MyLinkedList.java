@@ -3,7 +3,7 @@ public class MyLinkedList<E>{
 private int size;
 private Node<E> start, end;
 
-private class Node<E>{
+public class Node<E>{
   public E val;
   public Node<E> start, end;
 
@@ -26,6 +26,11 @@ private class Node<E>{
   }
 
 
+  public E value(){
+    return val;
+  }
+
+
 }
 
 public MyLinkedList(){
@@ -33,6 +38,9 @@ public MyLinkedList(){
 
 }
 
+public int size(){
+  return size;
+}
 
 public void addFront(Node<E> leon){
   if(size == 0) {
