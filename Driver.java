@@ -43,9 +43,9 @@ public class Driver{
   //System.out.println(buckets[0] + "yurd");
 
   int[] data = {2,4,2,4,3,6,4,6,8,4,3,5,7,90,7,5,3,5,3,56,4,2,234,2,5,462456,2,7,456,34,5,5345,345,3456,2,6,2};
-  //for(int i = 0; i < Radix.radixsort(data).length; i++){
-  //  System.out.println(Radix.radixsort(data)[i]);
-  //}
+  for(int i = 0; i < Radix.radixsort(data).length; i++){
+   System.out.println(Radix.radixsort(data)[i]);
+  }
   System.out.println(Radix.countDigits(1));
 
 

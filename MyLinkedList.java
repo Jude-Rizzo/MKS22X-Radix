@@ -39,6 +39,7 @@ public MyLinkedList(){
 }
 
 public int size(){
+  if(this == null) return -1;
   return size;
 }
 
@@ -84,10 +85,12 @@ public Node<E> removeFront(){
 
   public Node<E> removeBack(){
     if(size == 0) return null;
-    (end.start).setNext(null);
+
+    if(end.start != null)(end.start).setNext(null);
     Node<E> val = end;
     end = end.start;
     size--;
+    System.out.println(val);
     return val;
 
     }
