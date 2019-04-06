@@ -17,7 +17,7 @@ public static void main(String[]args){
         }
         long t1,t2;
         t1 = System.currentTimeMillis();
-        Merge.mergesort(data2);
+        Radix.radixsort(data2);
         t2 = System.currentTimeMillis();
         qtime += t2 - t1;
         t1 = System.currentTimeMillis();

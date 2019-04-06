@@ -135,10 +135,19 @@ public E removeFront(){
 
 
     public void extend(MyLinkedList<E> other){
-      end.setNext(other.start);
-      (other.start).setPrev(end);
+    if (length == 0){
+      start = other.start;
       end = other.end;
     }
+    else if (other.length > 0){
+      end.setNext(other.start);
+      end = other.end;
+    }
+    other.start = null;
+    other.end = null;
+    length += other.length;
+    other.length = 0;
+  }
 
 
 
