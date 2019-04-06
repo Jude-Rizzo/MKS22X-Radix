@@ -18,6 +18,14 @@ public class Node<E>{
     val = null;
   }
 
+  public Node<E> next(){
+    return end;
+  }
+
+  public Node<E> prev(){
+    return start;
+  }
+
   public void setNext(Node<E> yurd){
     end = yurd;
   }
@@ -75,16 +83,14 @@ public void addBack(Node<E> leon){
 
 }
 
+  public E removeFront(){
+  E val = start.value();
+  start = start.next();
+  size--;
+  return val;
+}
 
-public E removeFront(){
-  if(size == 0) { return null;}
-  (start.end).setPrev(null);
-  Node<E> val = start;
-  start = start.end;
-  size --;
-  return val.value();
 
-  }
 
   @SuppressWarnings("unchecked")
   public void clear(){
@@ -135,18 +141,18 @@ public E removeFront(){
 
 
     public void extend(MyLinkedList<E> other){
-    if (length == 0){
+    if (size == 0){
       start = other.start;
       end = other.end;
     }
-    else if (other.length > 0){
+    else if (other.size > 0){
       end.setNext(other.start);
       end = other.end;
     }
     other.start = null;
     other.end = null;
-    length += other.length;
-    other.length = 0;
+    size += other.size;
+    other.size = 0;
   }
 
 
