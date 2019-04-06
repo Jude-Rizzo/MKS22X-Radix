@@ -22,7 +22,7 @@ public class Radix{
   }
 
 
-  private static int getMax(int[] data){
+  private static int Maximum(int[] data){
     int max = data[0];
     for (int i : data){
       if (i > max) max = i;
@@ -53,46 +53,41 @@ public class Radix{
     for (int i =0; i < 20; i++){
       buckets[i] = new MyLinkedList<Integer>();
     }
-    MyLinkedList<Integer> temp = new MyLinkedList<Integer>();
-    int count = getMax(data);
-    //System.out.println(count);
+    MyLinkedList<Integer> storage = new MyLinkedList<Integer>();
+    int count = Maximum(data);
     int base = 1;
     for(int i = 0; i < count; i++){
-      //first pass through the array
+      //pass throuugh oncce for testinf purposes
       if (i == 0){
-        for (int idx = 0; idx < data.length; idx++){
-          int digit = (data[idx] / base) % 10;
-          //System.out.println(digit);
-          //sort the positives
-          if (data[idx] >= 0){
-            buckets[digit + 10].addBack(data[idx]);
+        for (int index = 0; index < data.length; index++){
+          int digit = (data[index] / base) % 10;
+
+          if (data[index] >= 0){
+            buckets[digit + 10].addBack(data[index]);
           }
           //sort the negatives
           else{
-            buckets[9 - digit].addBack(data[idx]);
+            buckets[9 - digit].addBack(data[index]);
           }
         }
 
-        temp.clear();
-          /**for (int c = 0; c < 20; c++){
-            System.out.println(buckets[c].toString());
-          }**/
-          //use temp and extend the buckets to this
+        storage.clear();
+
+          //use storage and extend the buckets to this
           for (int j = 0; j < 20; j++){
-            temp.extend(buckets[j]);
-            //System.out.println(temp.toString());
+            storage.extend(buckets[j]);
+
           }
-          //System.out.println("reorder #: 1 " + temp.toString());
-          //clear the buckets for another pass
+
           for (MyLinkedList<Integer> m : buckets){
             m.clear();
           }
         }
 
         else{
-       for (int idx = 0; idx < data.length; idx++){
+       for (int index = 0; index < data.length; index++){
          //get the digit
-         int num = temp.removeFront();
+         int num = storage.removeFront();
          int digit = (num / base) % 10;
          //System.out.println("pass #: " + i + " base: " + base + " num: " + num + " digit: " + digit);
          //sort the positives
@@ -111,12 +106,12 @@ public class Radix{
         //new stuff
 
     //ok above sorts them by first digit but also gets the larges number of digits;
-    temp.clear();
-        //copy from buckets to temp and extend
+    storage.clear();
+        //copy from buckets to storage and extend
         for (int j = 0; j < 20; j++){
-          temp.extend(buckets[j]);
+          storage.extend(buckets[j]);
         }
-        //System.out.println("reorder #: " + (i+1) + " " + temp.toString());
+        //System.out.println("reorder #: " + (i+1) + " " + storage.toString());
         //clear the buckets for another pass
         for (MyLinkedList<Integer> m : buckets){
           m.clear();
@@ -127,7 +122,7 @@ public class Radix{
     }
     //copy from linked list to original array
     for (int i = 0; i < data.length; i++){
-      data[i] = temp.removeFront();
+      data[i] = storage.removeFront();
     }
   }
 }
