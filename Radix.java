@@ -49,6 +49,23 @@ public class Radix{
           }
         }
 
+        temp.clear();
+          /**for (int c = 0; c < 20; c++){
+            System.out.println(buckets[c].toString());
+          }**/
+          //use temp and extend the buckets to this
+          for (int j = 0; j < 20; j++){
+            temp.extend(buckets[j]);
+            //System.out.println(temp.toString());
+          }
+          //System.out.println("reorder #: 1 " + temp.toString());
+          //clear the buckets for another pass
+          for (MyLinkedList<Integer> m : buckets){
+            m.clear();
+          }
+        }
+
+
         //new stuff
 
     //ok above sorts them by first digit but also gets the larges number of digits;
