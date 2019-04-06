@@ -13,6 +13,11 @@ public class Node<E>{
 
   }
 
+  @SuppressWarnings("unchecked")
+  public Node(){
+    val = null;
+  }
+
   public void setNext(Node<E> yurd){
     end = yurd;
   }
@@ -71,19 +76,25 @@ public void addBack(Node<E> leon){
 }
 
 
-public Node<E> removeFront(){
+public E removeFront(){
   if(size == 0) { return null;}
   (start.end).setPrev(null);
   Node<E> val = start;
   start = start.end;
   size --;
-  return val;
+  return val.value();
 
   }
 
+  @SuppressWarnings("unchecked")
+  public void clear(){
+     start = new Node();
+     end = new Node();
+     size = 0;
+   }
 
 
-  public Node<E> removeBack(){
+  public E removeBack(){
     if(size == 0) return null;
 
     if(end.start != null)(end.start).setNext(null);
@@ -91,7 +102,7 @@ public Node<E> removeFront(){
     end = end.start;
     size--;
     System.out.println(val);
-    return val;
+    return val.value();
 
     }
 

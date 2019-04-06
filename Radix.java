@@ -21,6 +21,30 @@ public class Radix{
     return  num%10;
   }
 
+
+  private static int getMax(int[] data){
+    int max = data[0];
+    for (int i : data){
+      if (i > max) max = i;
+    }
+    int count = 1;
+    while (max >= 10){
+      max /= 10;
+      count++;
+    }
+    return count;
+  }
+  //debuggingg
+  public static String linkedString(MyLinkedList<Integer>[] data){
+    String output = "";
+    for (int i = 10; i < data.length; i++){
+      output += data[i].toString() + " ";
+    }
+    return output;
+  }
+
+
+
   //ABOVE STARTS AT 0 AND GOES RIGHT TO LEFT
   //only returns for sake of testing
   public static void radixsort(int[] data){
@@ -41,11 +65,11 @@ public class Radix{
           //System.out.println(digit);
           //sort the positives
           if (data[idx] >= 0){
-            buckets[digit + 10].add(data[idx]);
+            buckets[digit + 10].addBack(data[idx]);
           }
           //sort the negatives
           else{
-            buckets[9 - digit].add(data[idx]);
+            buckets[9 - digit].addBack(data[idx]);
           }
         }
 
@@ -74,12 +98,12 @@ public class Radix{
          //sort the positives
          if (num >= 0){
            //System.out.println("pass #: " + i + " base: " + base + " num: " + num + " bucket #: " + (digit + 10) + " digit: " + digit);
-           buckets[digit + 10].add(num);
+           buckets[digit + 10].addBack(num);
            //System.out.println("bucket: " + (digit+10) + " " + buckets[digit+10].toString());
          }
          //sort the negatives
          else{
-           buckets[9 - digit].add(num);
+           buckets[9 - digit].addBack(num);
          }
        }
 
@@ -105,9 +129,5 @@ public class Radix{
     for (int i = 0; i < data.length; i++){
       data[i] = temp.removeFront();
     }
-  }
-}
-
-
   }
 }
