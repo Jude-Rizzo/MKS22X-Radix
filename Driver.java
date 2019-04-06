@@ -1,54 +1,37 @@
 import java.util.*;
 public class Driver{
-  //test MyLinkedList
-  public static void main(String[] args){
-    //start with empty linked MyLinkedList
-  /*  MyLinkedList<Integer> leon = new MyLinkedList<Integer>();
-    System.out.println(leon.toString());
-
-    for(int i = 0; i < 10; i++){
-      leon.addBack(i);
+public static void main(String[]args){
+  System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
+  int[]MAX_LIST = {1000000000,500,10};
+  for(int MAX : MAX_LIST){
+    for(int size = 31250; size < 2000001; size*=2){
+      long qtime=0;
+      long btime=0;
+      //average of 5 sorts.
+      for(int trial = 0 ; trial <=5; trial++){
+        int []data1 = new int[size];
+        int []data2 = new int[size];
+        for(int i = 0; i < data1.length; i++){
+          data1[i] = (int)(Math.random()*MAX);
+          data2[i] = data1[i];
+        }
+        long t1,t2;
+        t1 = System.currentTimeMillis();
+        Merge.mergesort(data2);
+        t2 = System.currentTimeMillis();
+        qtime += t2 - t1;
+        t1 = System.currentTimeMillis();
+        Arrays.sort(data1);
+        t2 = System.currentTimeMillis();
+        btime+= t2 - t1;
+        if(!Arrays.equals(data1,data2)){
+          System.out.println("FAIL TO SORT!");
+          System.exit(0);
+        }
+      }
+      System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
     }
-    System.out.println(leon.toString());
-
-    for(int i = 0; i < 5; i++){
-      System.out.println(leon.removeFront());
-
-    }
-    System.out.println(leon.toString());
-
-
-
-  MyLinkedList<Integer> h = new MyLinkedList<Integer>();
-  for(int i = 0; i < 5; i++){
-    h.addFront(i);
+    System.out.println();
   }
-  h.removeBack();
-  System.out.println(h);
-  leon.extend(h);
-  System.out.println(leon); */
-  //now testing RadixSort
-
-  //System.out.println(Radix.countDigits(10));
-//  System.out.println(Radix.countDigits(10000002) + "should be 8");
-  //System.out.println(Radix.getNthDigit(2,222));
-  //System.out.println(Radix.getNthDigit(0,1111122223));
-
-  //MyLinkedList<Integer>[] buckets = new MyLinkedList[10];
-//  System.out.println(buckets[0] == null);
-//  for(int i = 0; i < 10; i++){
-//    buckets[i] = new MyLinkedList<Integer>();
-//  }
-///  buckets[0].addFront(2);
-  //System.out.println(buckets[0] + "yurd");
-
-  int[] data = {2,4,2,4,3,6,4,6,8,4,3,5,7,90,7,5,3,5,3,56,4,2,234,2,5,462456,2,7,456,34,5,5345,345,3456,2,6,2};
-  for(int i = 0; i < Radix.radixsort(data).length; i++){
-   System.out.println(Radix.radixsort(data)[i]);
-  }
-  System.out.println(Radix.countDigits(1));
-
-
-
 }
 }
