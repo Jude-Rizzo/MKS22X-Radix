@@ -43,11 +43,39 @@ public class Radix{
     return output;
   }
 
+  public static boolean sorted(int[] data){
+    for(int i = 0; i < data.length - 1; i ++){
+      if (data[i + 1] < data[i]) return false;
+    }
+    return true;
+  }
 
+  public static boolean rsorted(int[] data){
+    for(int i = 0; i < data.length - 1; i ++){
+      if (data[i + 1] > data[i]) return false;
+    }
+    return true;
+  }
+
+
+  public static int[] back(int[] data){
+    int[] ans = new int[data.length];
+    for(int i = data.length - 1; i > -1; i--){
+      ans[data.length - 1 - i] = data[i];
+    }
+    return ans;
+  }
 
   //ABOVE STARTS AT 0 AND GOES RIGHT TO LEFT
   //only returns for sake of testing
   public static void radixsort(int[] data){
+    if(sorted(data)) return;
+    if(rsorted(data)){
+      int[] ans = back(data);
+      for(int i = 0; i < data.length; i++){
+        data[i] = ans[i];
+      }
+    }
     @SuppressWarnings({"rawtypes", "unchecked"})
     MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
     for (int i =0; i < 20; i++){
